@@ -6,11 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
+    [SerializeField] private float coolDownTimer = 1.5f;
+    [SerializeField] private ParticleSystem _deathEffect;
+
+    private void Start()
+    {
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Ground")
         {
-            SceneManager.LoadScene(0);
+            _deathEffect.Play();
+            Invoke("LoadScene", coolDownTimer);
         }
+    }
+
+    void LoadScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }
