@@ -14,6 +14,7 @@ public class FinishLine : MonoBehaviour
         if (col.tag == "Player")
         {
             _finishParticle.Play();
+            GetComponent<AudioSource>().Play();
             Invoke("LoadScene", coolDownTimer);
         }
     }
